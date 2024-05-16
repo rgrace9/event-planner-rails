@@ -7,4 +7,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :users
+  resources :events do
+    resources :comments, only: [:create, :destroy]
+  end
+  resources :sessions, only: [:new, :create, :destroy]
+  root 'events#index'  # Set the events index as the root path
 end
